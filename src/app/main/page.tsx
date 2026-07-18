@@ -1,28 +1,26 @@
-import Image from "next/image";
 import { getSession } from "@/lib/getSession";
+import { getCharacter } from "@/lib/getCharacter";
+import { redirect } from "next/navigation";
 
 export default async function HomePage() {
    const user = await getSession();
+   if (!user) {
+      redirect("/login");
+   }
+
+   const character = await getCharacter(user);
 
    return (
-      <div className="flex flex-col flex-1 items-center justify-center">
-         <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white/70 dark:bg-black/70 sm:items-start">
-            <div>
-               <h1>Главная</h1>
-
-               {/* видят все */}
-               <p>Добро пожаловать</p>
-
-               {/* видят гости */}
-               {user && user.role == "guest" && <div>Дорогой гость</div>}
-
-               {/* только залогиненные не гости */}
-               {user && user.role !== "guest" && <div>Блок для игроков</div>}
-
-               {/* только мастер */}
-               {user?.role === "master" && <div>Блок для мастера</div>}
-            </div>
-         </main>
+      <div className="flex flex-col flex-1 items-center w-full">
+         <h1>☯ Black And White ☯</h1>
+         {/* видят все */}
+         <p>Добро пожаловать</p>
+         {/* видят гости */}
+         {user && user.role == "guest" && <div>Дорогой {character.name}!</div>}
+         {/* только залогиненные не гости */}
+         {user && user.role !== "guest" && <div>Блок для игроков</div>}
+         {/* только мастер */}
+         {user?.role === "master" && <div>Блок для мастера</div>}
       </div>
    );
 }
