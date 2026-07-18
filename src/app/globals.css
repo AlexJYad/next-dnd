@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+   /* =====================
+     BACKGROUND LAYERS
+  ====================== */
+   --bg-0: #f9eedc; /* основной свет (бумага / мир) */
+   --bg-1: #f0e6d5; /* карточки / поверхности */
+   --bg-2: #e1d2c4; /* hover / глубина */
+   --bg-ui: #f0f0f0; /* холодный интерфейс слой */
+
+   /* =====================
+     TEXT
+  ====================== */
+   --foreground: #171717;
+   --foreground-muted: #4a4a4a;
+
+   /* =====================
+     ACCENT (единый смысл)
+  ====================== */
+   --accent: #2d210b;
+   --accent-hover: #382719;
+
+   /* =====================
+     UI STRUCTURE
+  ====================== */
+   --border: 2px solid #2d210b;
+
+   --shadow-hard: 3px 3px 0 #382719;
+   --shadow-soft: 4px 6px 14px rgba(56, 39, 25, 0.25);
+
+   /* =====================
+     SEMANTIC COLORS
+  ====================== */
+   --danger: #a52a2a;
+   --nature: #0b623b;
+   --mystic: #08514e;
+
+   /* =====================
+     FRACTIONS / WORLDS
+  ====================== */
+   --faction-alto: #f6f3ee; /* порядок / свет */
+   --faction-beyrer: #ddfaff; /* интеллект / воздух */
+   --faction-van: #d8f8d5; /* жизнь / природа */
+   --faction-tacker: #e8deff; /* магия / иллюзии */
+   --faction-ocillia: #fff3ce; /* энергия / свет */
+}
+
+.dark {
+   --bg-0: #1a1410;
+   --bg-1: #221c15;
+   --bg-2: #2a221a;
+   --bg-ui: #1a1a1a;
+
+   --foreground: #ededed;
+   --foreground-muted: #a0a0a0;
+
+   --accent: #d4b896;
+   --accent-hover: #e0c9a8;
+
+   --border: 2px solid #d4b896;
+   --shadow-hard: 3px 3px 0 #d4b896;
+   --shadow-soft: 4px 6px 14px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+   --color-background: var(--bg-2);
+   --color-foreground: var(--foreground);
+   --font-sans: var(--font-geist-sans);
+   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+   color: var(--foreground);
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+   min-height: 100vh;
+   min-width: 100vw;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 24px;
+}
+
+.btn {
+   border: none;
+   background: none;
+   cursor: pointer;
+}
+
+.btn-primary {
+   padding: 9px 18px;
+   border: var(--border);
+   border-radius: 8px;
+   background: var(--accent);
+   color: var(--bg-0);
+   font-size: 14px;
+   font-weight: 600;
+   text-decoration: none;
+   transition:
+      background 0.15s ease,
+      transform 0.1s ease;
+}
+
+.btn-primary:hover {
+   background: var(--accent-hover);
+}
+
+.btn-primary:hover:not(:disabled) {
+   background: var(--accent-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+   transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
 }
