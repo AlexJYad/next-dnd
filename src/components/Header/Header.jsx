@@ -12,7 +12,7 @@ export default function Header({ user }) {
 
    const plainLinks = [{ href: "/main", label: "Главная" }];
 
-   const trailingLinks = [{ href: "/about", label: "Разработка" }];
+   const trailingLinks = [{ href: "/main/about", label: "Разработка" }];
 
    const dropdowns = [
       {

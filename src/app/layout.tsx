@@ -3,6 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import MainframeBg from "@/components/MainframeBg/MainframeBg";
 import Header from "@/components/Header/Header";
 import "./globals.css";
+import localFont from "next/font/local";
+
+const bulgaria = localFont({
+   src: "../../public/fonts/Bulgaria Moderna Pro/Bulgaria Moderna Pro.otf",
+   variable: "--font-bulgaria",
+   display: "swap",
+});
 
 const geistSans = Geist({
    variable: "--font-geist-sans",
