@@ -9,7 +9,7 @@ export default function MainLayout({
       <>
          <Header user={undefined} />
          <div className="flex flex-col flex-1 items-center justify-center w-full">
-            <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between bg-white/70 dark:bg-black/70 sm:items-start shadow-lg shadow-black-600 dark:shadow-black-600 p-4 sm:p-6 lg:p-8">
+            <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-between bg-white/80 dark:bg-black/80 sm:items-start shadow-lg shadow-gray-600 dark:shadow-gray-900 py-8 px-20">
                {children}
             </main>
          </div>

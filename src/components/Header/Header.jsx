@@ -15,27 +15,31 @@ export default function Header({ user }) {
    const trailingLinks = [{ href: "/main/about", label: "Разработка" }];
 
    const dropdowns = [
-      {
-         key: "rules",
-         label: "Правила",
-         basePath: "/main/rules",
-         items: [
-            { href: "/main/rules", label: "Общие сведения" },
-            {
-               href: "/main/rules#character-creation",
-               label: "Создание персонажа",
-            },
-            { href: "/main/rules#combat", label: "Бой" },
-         ],
-      },
+      // {
+      //    key: "rules",
+      //    label: "Правила",
+      //    basePath: "/main/rules",
+      //    items: [
+      //       { href: "/main/rules", label: "Общие сведения" },
+      //       {
+      //          href: "/main/rules#character-creation",
+      //          label: "Создание персонажа",
+      //       },
+      //       { href: "/main/rules#combat", label: "Бой" },
+      //    ],
+      // },
       {
          key: "lor",
          label: "Лор",
          basePath: "/main/lor",
          items: [
             { href: "/main/lor", label: "Общие сведения" },
-            { href: "/main/lor#history", label: "История мира" },
-            { href: "/main/lor#races", label: "Народы и расы" },
+            { href: "/main/lor/magic", label: "Магия" },
+            { href: "/main/lor/religion", label: "Религия" },
+            { href: "/main/lor/history", label: "История" },
+            { href: "/main/lor/economy", label: "Экономика" },
+            { href: "/main/lor/politics", label: "Политика" },
+            { href: "/main/lor/culture", label: "Культура" },
          ],
       },
       {

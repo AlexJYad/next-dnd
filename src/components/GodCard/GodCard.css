@@ -1,0 +1,57 @@
+.god-badges {
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   margin-left: 10px;
+   vertical-align: middle;
+}
+
+.badge {
+   display: inline-flex;
+   align-items: center;
+   gap: 4px;
+   padding: 3px 8px;
+   border-radius: 999px;
+   font-size: 0.72rem;
+   font-weight: 600;
+   white-space: nowrap;
+}
+
+.badge--light {
+   background: #fff8dc;
+   color: #8a6d00;
+   border: 1px solid #e6c94d;
+}
+
+.badge--dark {
+   background: #1a1a1a;
+   color: #d9d9d9;
+   border: 1px solid #444;
+}
+
+.badge--neutral {
+   background: #eef0f2;
+   color: #555;
+   border: 1px solid #ccc;
+}
+
+.badge--region {
+   background: #e8f0ff;
+   color: #2a4d8f;
+   border: 1px solid #a9c3e8;
+}
+
+.god-card {
+   border-left: 3px solid transparent;
+   padding-left: 12px;
+   margin-bottom: 8px;
+}
+.god-card--light {
+   border-left-color: #e6c94d;
+}
+.god-card--dark {
+   border-left-color: #444;
+}
+.god-card--neutral {
+   border-left-color: #999;
+}

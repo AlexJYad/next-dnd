@@ -1,5 +1,4 @@
 import { getSession } from "@/lib/getSession";
-import { getCharacter } from "@/lib/getCharacter";
 import { redirect } from "next/navigation";
 import "./about.css";
 
@@ -9,8 +8,6 @@ export default async function HomePage() {
    if (!user) {
       redirect("/login");
    }
-
-   const character = await getCharacter(user);
 
    return (
       <div className="news-container flex flex-col flex-1 self-center w-m-xl">
