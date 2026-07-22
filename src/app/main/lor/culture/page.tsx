@@ -1,3 +1,4 @@
+import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 import { getSession } from "@/lib/getSession";
 import { redirect } from "next/navigation";
 
@@ -54,6 +55,16 @@ export default async function HomePage() {
             современных удобств. Также в некоторых местах традиции бань тесно
             переплетены с магическими ритуалами очищения и исцеления.
          </p>
+         <hr />
+         <ImageWithFallback
+            src={
+               "https://mmwmxohfqbjnywsupfgh.supabase.co/storage/v1/object/public/img/main_1.png"
+            }
+            alt={``}
+            fallbackSrc="/images/placeholder.png"
+            className="img-primary"
+         />
+         <hr />
          <p>
             Художественные традиции и ремесла — важная часть жизни жителей
             Империи. Ткание, керамика, кузнечное дело и обработка дерева

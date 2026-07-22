@@ -1,3 +1,4 @@
+import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 import { getSession } from "@/lib/getSession";
 import { redirect } from "next/navigation";
 
@@ -22,12 +23,13 @@ export default async function HomePage() {
             навыки.
          </p>
          <hr />
-         <img
-            className="img-primary"
+         <ImageWithFallback
             src={
                "https://mmwmxohfqbjnywsupfgh.supabase.co/storage/v1/object/public/img/main_3.png"
             }
-            alt=""
+            alt={``}
+            fallbackSrc="/images/placeholder.png"
+            className="img-primary"
          />
          <hr />
          <h2>Валюта</h2>
@@ -122,12 +124,13 @@ export default async function HomePage() {
             увеличивает стоимость хлеба и зерна.
          </p>
          <hr />
-         <img
-            className="img-primary"
+         <ImageWithFallback
             src={
                "https://mmwmxohfqbjnywsupfgh.supabase.co/storage/v1/object/public/img/main_6.png"
             }
-            alt=""
+            alt={``}
+            fallbackSrc="/images/placeholder.png"
+            className="img-primary"
          />
          <hr />
          <h2>Караваны</h2>

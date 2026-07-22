@@ -1,3 +1,4 @@
+import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 import { getSession } from "@/lib/getSession";
 import { redirect } from "next/navigation";
 
@@ -23,12 +24,13 @@ export default async function HomePage() {
             также гарантирует стабильность и процветание.
          </p>
          <hr />
-         <img
-            className="img-primary"
+         <ImageWithFallback
             src={
                "https://mmwmxohfqbjnywsupfgh.supabase.co/storage/v1/object/public/img/main_5.png"
             }
-            alt=""
+            alt={``}
+            fallbackSrc="/images/placeholder.png"
+            className="img-primary"
          />
          <hr />
          <h2>Релегиозная власть</h2>

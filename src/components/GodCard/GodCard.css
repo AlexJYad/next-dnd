@@ -55,3 +55,10 @@
 .god-card--neutral {
    border-left-color: #999;
 }
+
+.god-image {
+   margin: 1rem;
+   max-width: 500px;
+   aspect-ratio: 1 / 1;
+   border-radius: 8px;
+}

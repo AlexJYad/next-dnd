@@ -1,5 +1,6 @@
 import { getGodsGrouped } from "@/lib/gods";
 import { GodCard } from "@/components/GodCard/GodCard";
+import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 
 const categoryTitles: Record<string, string> = {
    main: "Основной пантеон",
@@ -62,12 +63,13 @@ export default async function LoreReligionPage() {
             </li>
          </ul>
          <hr />
-         <img
-            className="img-primary"
+         <ImageWithFallback
             src={
                "https://mmwmxohfqbjnywsupfgh.supabase.co/storage/v1/object/public/img/main_8.png"
             }
-            alt=""
+            alt={``}
+            fallbackSrc="/images/placeholder.png"
+            className="img-primary"
          />
          <hr />
          <p>

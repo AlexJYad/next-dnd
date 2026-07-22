@@ -6,6 +6,7 @@ import {
 } from "@/components/icons/AlignmentIcons";
 
 import "./GodCard.css";
+import { ImageWithFallback } from "../ImageWithFallback/ImageWithFallback";
 
 type God = {
    id: string;
@@ -63,7 +64,12 @@ export function GodCard({ god, reverse }: { god: God; reverse: boolean }) {
 
          <div className={`gods ${reverse ? "reverse" : ""}`}>
             {god.image_url && (
-               <img src={god.image_url} alt={`${god.name} — ${god.title}`} />
+               <ImageWithFallback
+                  src={god.image_url}
+                  alt={`${god.name} — ${god.title}`}
+                  fallbackSrc="/images/gods/placeholder.jpg"
+                  className="god-image"
+               />
             )}
             <div>
                <p>{god.description}</p>
