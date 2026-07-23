@@ -131,8 +131,9 @@ p {
    text-align: justify;
 }
 p + p,
-p + h3 {
-   margin-top: 1em;
+p + h3,
+p + strong {
+   margin-top: 1rem;
 }
 
 hr {

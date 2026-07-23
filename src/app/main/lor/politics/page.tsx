@@ -48,9 +48,9 @@ export default async function HomePage() {
             политике, влияя на управление территориями, общественные нормы и
             даже решение конфликтов между феодалами.
          </p>
-         <p className="bold l">
+         <strong>
             Церковь делится на две основные ветви: Инквизиция и Священники.
-         </p>
+         </strong>
          <p></p>
          <ul className="footnote">
             <li>
