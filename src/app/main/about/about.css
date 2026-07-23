@@ -1,0 +1,35 @@
+.news-container {
+   --border-color: #2d210b;
+   --shadow-color: #382719;
+   --bg-color: rgba(249, 238, 220, 0.6);
+   --marker-color: #8b4513;
+   --marker-color-nested: #a0272a;
+}
+
+.news-container ul {
+   padding-left: 10px;
+   list-style: none;
+   margin: 0;
+}
+
+.news-container li {
+   margin-top: 8px;
+   line-height: 1.4;
+}
+
+.news-container > ul > li::before {
+   content: "★➤";
+   margin-right: 10px;
+   color: var(--marker-color);
+}
+
+.news-container ul ul {
+   padding-left: 16px;
+   margin-top: 4px;
+}
+
+.news-container ul ul li::before {
+   content: "➤";
+   margin-right: 10px;
+   color: var(--marker-color-nested);
+}
