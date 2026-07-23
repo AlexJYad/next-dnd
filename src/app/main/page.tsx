@@ -13,23 +13,19 @@ export default async function HomePage() {
    return (
       <div className="flex flex-col flex-1 items-center w-full">
          <h1>☯ Black And White ☯</h1>
-         {/* видят все */}
-         <p>Добро пожаловать</p>
-         {/* видят гости */}
-         {user && user.role == "guest" && (
-            <div>
-               <h2>Дорогой {character.name}!</h2>
-            </div>
-         )}
+         <h2>Добро пожаловать, дорогой {character.name}!</h2>
          {/* только залогиненные не гости */}
          {user && user.role !== "guest" && (
             <div>
-               <h2>Дорогой {character.name}!</h2>
                <h3>Это блок для игроков</h3>
             </div>
          )}
          {/* только мастер */}
-         {user?.role === "admin" && <div>Блок для мастера</div>}
+         {user?.role === "admin" && (
+            <div>
+               <h3>Блок для мастера</h3>
+            </div>
+         )}
       </div>
    );
 }
