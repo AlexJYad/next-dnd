@@ -11,10 +11,7 @@
    },
    "dependencies": {
       "@supabase/supabase-js": "^2.106.2",
-<<<<<<< HEAD
       "bcrypt": "^6.0.0",
-=======
->>>>>>> deploy/main
       "bcryptjs": "^3.0.3",
       "cytoscape": "^3.34.0",
       "iron-session": "^8.0.4",
@@ -33,8 +30,4 @@
       "tailwindcss": "^4",
       "typescript": "^5"
    }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> deploy/main
