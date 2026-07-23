@@ -16,9 +16,18 @@ export default async function HomePage() {
          {/* видят все */}
          <p>Добро пожаловать</p>
          {/* видят гости */}
-         {user && user.role == "guest" && <div>Дорогой {character.name}!</div>}
+         {user && user.role == "guest" && (
+            <div>
+               <h2>Дорогой {character.name}!</h2>
+            </div>
+         )}
          {/* только залогиненные не гости */}
-         {user && user.role !== "guest" && <div>Блок для игроков</div>}
+         {user && user.role !== "guest" && (
+            <div>
+               <h2>Дорогой {character.name}!</h2>
+               <h3>Это блок для игроков</h3>
+            </div>
+         )}
          {/* только мастер */}
          {user?.role === "admin" && <div>Блок для мастера</div>}
       </div>
