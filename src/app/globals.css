@@ -4,9 +4,9 @@
    /* =====================
      BACKGROUND LAYERS
   ====================== */
-   --bg-0: #f9eedc; /* основной свет (бумага / мир) */
-   --bg-1: #f0e6d5; /* карточки / поверхности */
-   --bg-2: #e1d2c4; /* hover / глубина */
+   --bg-0: #f8f4ec;
+   --bg-1: #efe6d8;
+   --bg-2: #e3d4c1;
    --bg-ui: #f0f0f0; /* холодный интерфейс слой */
 
    /* =====================
@@ -53,9 +53,17 @@
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
    --font-heading: var(--font-bulgaria), sans-serif;
-   --font-subheading: "Copyright House Industries", sans-serif;
    --font-code:
       source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+
+   /* =====================
+       MARKERS
+   ====================== */
+   --marker-content: "\2666";
+   --marker-color: white;
+   --marker-stroke: black;
+   --marker-size: 0.8em;
+   --marker-shift: -7%;
 }
 
 .dark {
@@ -87,24 +95,144 @@ body {
    font-family: var(--font-decorative);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   padding-bottom: 1rem;
+   text-align: center;
+}
+
 h1 {
    font-size: 32px;
-   font-family: var(--font-heading);
+   font-weight: 600;
+   padding-bottom: 1rem;
 }
 
 h2 {
    font-size: 23px;
+   font-weight: 600;
    font-family: var(--font-heading);
 }
 
 h3 {
-   font-size: 13px;
-   font-weight: 400;
+   font-size: 0.8rem;
+   font-weight: 600;
    font-family: var(--font-subheading);
 }
 
 p {
    font-family: var(--font-decorative);
+   text-indent: 0;
+   line-height: 1.6;
+   margin: 0;
+   text-align: justify;
+}
+p + p,
+p + h3,
+p + strong {
+   margin-top: 1rem;
+}
+
+hr {
+   position: relative;
+   width: 100%;
+   height: 1px;
+   margin: 3em 0;
+   border: none;
+   outline: none;
+   overflow: visible;
+   background-image: linear-gradient(to right, white, black, white);
+   align-self: center;
+}
+
+hr::before {
+   content: "\2666\2666\2666";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   padding: 0.5em 3em;
+   color: white;
+   -webkit-text-stroke: 1px black;
+}
+
+li {
+   text-align: justify;
+}
+
+li + li {
+   margin-top: 0.5em;
+}
+
+ul + p,
+ol + p,
+ul + strong,
+ol + strong {
+   margin-top: 1em;
+}
+
+ul,
+ol {
+   margin: 1em 0 0 1.5em;
+   text-align: left;
+   align-self: start;
+}
+ul li::before {
+   content: var(--marker-content);
+   display: inline-block;
+   margin-left: -20px;
+   padding-right: 10px;
+   font-size: var(--marker-size);
+   line-height: 1;
+   color: var(--marker-color);
+   -webkit-text-stroke: 1px var(--marker-stroke);
+   transform: translateY(var(--marker-shift));
+}
+
+li.dark::before {
+   color: black;
+}
+
+ol li {
+   list-style: decimal;
+}
+
+blockquote {
+   position: relative;
+   align-self: center;
+   padding: 1rem;
+   border-radius: 10px;
+   max-width: 60%;
+}
+
+blockquote footer {
+   font-size: 0.9rem;
+   text-align: right;
+}
+
+blockquote:before,
+blockquote:after {
+   font-family: cursive;
+   position: absolute;
+   color: #382719;
+   font-size: 8rem;
+   width: 4rem;
+   height: 4rem;
+}
+
+blockquote:before {
+   content: "“";
+   left: -5rem;
+   bottom: 66%;
+}
+
+blockquote:after {
+   content: "”";
+   right: -5rem;
+   bottom: 66%;
 }
 
 .page {
@@ -151,4 +279,10 @@ p {
 .btn-primary:disabled {
    opacity: 0.5;
    cursor: not-allowed;
+}
+
+.img-primary {
+   max-width: 230px;
+   height: auto;
+   align-self: center;
 }

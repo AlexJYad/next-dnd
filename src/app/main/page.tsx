@@ -20,7 +20,7 @@ export default async function HomePage() {
          {/* только залогиненные не гости */}
          {user && user.role !== "guest" && <div>Блок для игроков</div>}
          {/* только мастер */}
-         {user?.role === "master" && <div>Блок для мастера</div>}
+         {user?.role === "admin" && <div>Блок для мастера</div>}
       </div>
    );
 }
