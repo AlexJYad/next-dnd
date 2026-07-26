@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
+   color-scheme: light dark;
    /* =====================
      BACKGROUND LAYERS
   ====================== */
@@ -93,6 +96,10 @@
 body {
    color: var(--foreground);
    font-family: var(--font-decorative);
+}
+
+main {
+   background-color: var(--bg-0);
 }
 
 h1,
