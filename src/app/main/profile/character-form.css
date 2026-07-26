@@ -1,0 +1,168 @@
+.character-form {
+   max-width: 640px;
+   margin: 0 auto;
+   padding: 24px;
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+   font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
+   color: #1a1a1a;
+}
+
+.character-form .error-message {
+   background: #fef2f2;
+   border: 1px solid #fecaca;
+   color: #b91c1c;
+   padding: 12px 16px;
+   border-radius: 8px;
+   font-size: 14px;
+}
+
+.character-form label {
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+   font-size: 14px;
+   font-weight: 500;
+   color: #374151;
+}
+
+.character-form input[type="text"],
+.character-form input[type="number"],
+.character-form textarea {
+   padding: 10px 12px;
+   border: 1px solid #d1d5db;
+   border-radius: 8px;
+   font-size: 15px;
+   font-family: inherit;
+   color: #111827;
+   background: #fff;
+   transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+}
+
+.character-form input[type="text"]:focus,
+.character-form input[type="number"]:focus,
+.character-form textarea:focus {
+   outline: none;
+   border-color: #6366f1;
+   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.character-form textarea {
+   min-height: 90px;
+   resize: vertical;
+}
+
+.character-form fieldset {
+   border: 1px solid #e5e7eb;
+   border-radius: 12px;
+   padding: 16px;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.character-form legend {
+   padding: 0 8px;
+   font-size: 13px;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: 0.04em;
+   color: #6b7280;
+}
+
+/* Инвентарь */
+.character-form .inventory-item {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.character-form .inventory-item input[type="text"] {
+   flex: 1;
+}
+
+.character-form .inventory-item input[type="number"] {
+   width: 80px;
+}
+
+.character-form .inventory-item button {
+   flex-shrink: 0;
+   width: 32px;
+   height: 32px;
+   border: none;
+   border-radius: 6px;
+   background: #fef2f2;
+   color: #b91c1c;
+   font-size: 16px;
+   line-height: 1;
+   cursor: pointer;
+   transition: background 0.15s ease;
+}
+
+.character-form .inventory-item button:hover {
+   background: #fee2e2;
+}
+
+.character-form .add-item-btn {
+   align-self: flex-start;
+   padding: 8px 14px;
+   border: 1px dashed #9ca3af;
+   border-radius: 8px;
+   background: transparent;
+   color: #4b5563;
+   font-size: 14px;
+   font-weight: 500;
+   cursor: pointer;
+   transition:
+      border-color 0.15s ease,
+      color 0.15s ease;
+}
+
+.character-form .add-item-btn:hover {
+   border-color: #6366f1;
+   color: #6366f1;
+}
+
+/* Валюта */
+.character-form .currency-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+   gap: 12px;
+}
+
+.character-form .currency-grid label {
+   font-size: 12px;
+   text-transform: capitalize;
+}
+
+.character-form .currency-grid input {
+   width: 100%;
+}
+
+/* Кнопка сохранить */
+.character-form .submit-btn {
+   align-self: flex-start;
+   padding: 12px 28px;
+   border: none;
+   border-radius: 8px;
+   background: #6366f1;
+   color: #fff;
+   font-size: 15px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: background 0.15s ease;
+}
+
+.character-form .submit-btn:hover {
+   background: #4f46e5;
+}
+
+.character-form .submit-btn:active {
+   transform: translateY(1px);
+}
