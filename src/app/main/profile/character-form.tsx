@@ -59,7 +59,7 @@ export function CharacterForm({ character }: CharacterFormProps) {
       <form action={handleSubmit} className="character-form">
          {error && <p className="error-message">{error}</p>}
 
-         <label>
+         <label style={{ display: "none" }}>
             <input name="name" defaultValue={character.name} required />
          </label>
 
