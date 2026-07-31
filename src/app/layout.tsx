@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import MainframeBg from "@/components/MainframeBg/MainframeBg";
-import Header from "@/components/Header/Header";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Providers } from "./providers";
 
 const bulgaria = localFont({
    src: "../../public/fonts/Bulgaria Moderna Pro/Bulgaria Moderna Pro.otf",
@@ -34,11 +34,14 @@ export default function RootLayout({
    return (
       <html
          lang="en"
-         className={`${geistSans.variable} ${geistMono.variable} ${bulgaria.variable} h-full antialiased `}
+         className={`${geistSans.variable} ${geistMono.variable} ${bulgaria.variable} h-full antialiased`}
+         suppressHydrationWarning
       >
          <body className="min-h-full flex flex-col bg-background">
-            <MainframeBg />
-            {children}
+            <Providers>
+               <MainframeBg />
+               {children}
+            </Providers>
          </body>
       </html>
    );

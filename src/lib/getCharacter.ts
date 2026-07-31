@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { SessionUser } from "@/lib/session";
 
 import type { Database } from "@/lib/database.types";
@@ -8,7 +8,7 @@ type Character = Database["public"]["Tables"]["characters"]["Row"];
 export async function getCharacter(user: SessionUser): Promise<Character> {
    const { data, error } = await supabaseAdmin
       .from("characters")
-      .select("id, user_id, name, level")
+      .select("*")
       .eq("user_id", user.id)
       .single();
 
