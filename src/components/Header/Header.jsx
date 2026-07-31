@@ -62,6 +62,15 @@ export default function Header({ user }) {
             { href: "/main/spells#tiers", label: "Уровни/тиры" },
          ],
       },
+      {
+         key: "profile",
+         label: "Профиль",
+         basePath: "/main/profile",
+         items: [
+            { href: "/main/profile", label: "Лист персонажа" },
+            { href: "/main/backstory", label: "Предыстория" },
+         ],
+      },
    ];
 
    useEffect(() => {

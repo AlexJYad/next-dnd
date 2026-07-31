@@ -60,7 +60,6 @@ export function CharacterForm({ character }: CharacterFormProps) {
          {error && <p className="error-message">{error}</p>}
 
          <label>
-            Имя
             <input name="name" defaultValue={character.name} required />
          </label>
 

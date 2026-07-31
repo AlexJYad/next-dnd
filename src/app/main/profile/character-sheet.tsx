@@ -1,6 +1,6 @@
-// app/profile/character-sheet.tsx
 import type { Database } from "@/lib/database.types";
 import { StatBar } from "@/components/StatBar/StatBar";
+import "./character-sheet.css";
 
 type Character = Database["public"]["Tables"]["characters"]["Row"];
 
@@ -77,11 +77,11 @@ export function CharacterSheet({ character }: { character: Character }) {
          <fieldset className="character-sheet-section">
             <legend>Кошелёк</legend>
             <div className="currency-display">
-               <span>🥇 {character.gold}</span>
-               <span>🥈 {character.silver}</span>
-               <span>🥉 {character.copper}</span>
-               <span>💎 {character.platinum}</span>
-               <span>✨ {character.electrum}</span>
+               <span>сp {character.copper}</span>
+               <span>sp {character.silver}</span>
+               <span>gp {character.gold}</span>
+               <span>ep {character.electrum}</span>
+               <span>pp {character.platinum}</span>
             </div>
          </fieldset>
 
