@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -6,13 +7,19 @@ import LogoutButton from "../LogoutButton/LogoutButton";
 import "./Header.css";
 
 export default function Header({ user }) {
+   console.log("Header user:", user);
    const pathname = usePathname();
    const [openMenu, setOpenMenu] = useState(null);
    const navRef = useRef(null);
 
    const plainLinks = [{ href: "/main", label: "Главная" }];
 
-   const trailingLinks = [{ href: "/main/about", label: "Разработка" }];
+   const trailingLinks = [
+      { href: "/main/about", label: "Разработка" },
+      ...(user?.role === "admin" ?
+         [{ href: "/main/admin/characters", label: "Мастерская" }]
+      :  []),
+   ];
 
    const dropdowns = [
       // {
