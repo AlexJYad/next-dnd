@@ -21,8 +21,7 @@ export default async function ProfilePage() {
       :  [];
 
    return (
-      <div>
-         <h1>{character.name ?? "Без имени"}</h1>
+      <div className="flex">
          <CharacterSheet character={character} />
          <CharacterForm
             character={{

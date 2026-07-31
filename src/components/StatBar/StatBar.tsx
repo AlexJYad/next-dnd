@@ -14,9 +14,11 @@ export function StatBar({
       <div className="stat-bar">
          <div className="stat-bar-label">
             <span>{label}</span>
-            <span>
-               {current} / {max}
-            </span>
+            {variant === "hp" && (
+               <span>
+                  {current} / {max}
+               </span>
+            )}
          </div>
          <div className="stat-bar-track">
             <div

@@ -98,10 +98,6 @@ body {
    font-family: var(--font-decorative);
 }
 
-main {
-   background-color: var(--bg-0);
-}
-
 h1,
 h2,
 h3,
