@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -28,6 +29,7 @@
      UI STRUCTURE
   ====================== */
    --border: 2px solid #2d210b;
+   --border-light: 1.5px solid #2d210b;
 
    --shadow-hard: 3px 3px 0 #382719;
    --shadow-soft: 4px 6px 14px rgba(56, 39, 25, 0.25);
@@ -67,6 +69,28 @@
    --marker-stroke: black;
    --marker-size: 0.8em;
    --marker-shift: -7%;
+
+   /* =====================
+       SIZE
+   ====================== */
+
+   --size-xs: 0.75rem;
+   --size-sm: 0.875rem;
+   --size-md: 1rem;
+   --size-lg: 1.125rem;
+   --size-xl: 1.25rem;
+   --size-2xl: 1.5rem;
+   --size-3xl: 2rem;
+
+   /* =====================
+       COIN
+   ====================== */
+
+   --coin-copper: #c46a2d;
+   --coin-silver: #d9d9d9;
+   --coin-electrum: #b5eced;
+   --coin-gold: #f4c430;
+   --coin-platinum: #ffffff;
 }
 
 .dark {
@@ -109,13 +133,13 @@ h6 {
 }
 
 h1 {
-   font-size: 32px;
+   font-size: var(--size-3xl);
    font-weight: 600;
    padding-bottom: 1rem;
 }
 
 h2 {
-   font-size: 23px;
+   font-size: var(--size-2xl);
    font-weight: 600;
    font-family: var(--font-heading);
 }

@@ -1,6 +1,7 @@
 import type { Database } from "@/lib/database.types";
 import { StatBar } from "@/components/StatBar/StatBar";
 import "./character-sheet.css";
+import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 
 type Character = Database["public"]["Tables"]["characters"]["Row"];
 
@@ -20,7 +21,6 @@ export function CharacterSheet({ character }: { character: Character }) {
             <div>
                <h1>{character.name}</h1>
                <p className="character-meta">
-                  Уровень {character.level} ·{" "}
                   {character.age ?
                      `${character.age} лет`
                   :  "Возраст неизвестен"}
@@ -44,19 +44,24 @@ export function CharacterSheet({ character }: { character: Character }) {
          </div>
 
          <div className="character-sheet-grid">
+            <InfoCard label="Уровень" value={character.level ?? 0} />
             <InfoCard label="Класс брони" value={character.armor_class} />
             <InfoCard label="Опыт" value={character.experience} />
+            <InfoCard
+               label="Бонус мастерства"
+               value={2 + Math.floor((character.level ?? 0 - 1) / 4)}
+            />
          </div>
 
          <fieldset className="character-sheet-section">
             <legend>Характеристики</legend>
             <div className="stats-grid">
-               <StatBox label="СИЛ" value={character.strength} />
-               <StatBox label="ЛОВ" value={character.dexterity} />
-               <StatBox label="ТЕЛ" value={character.constitution} />
-               <StatBox label="ИНТ" value={character.intelligence} />
-               <StatBox label="МУД" value={character.wisdom} />
-               <StatBox label="ХАР" value={character.charisma} />
+               <StatBox label="Сила" value={character.strength} />
+               <StatBox label="Ловкость" value={character.dexterity} />
+               <StatBox label="Телосложение" value={character.constitution} />
+               <StatBox label="Интелекти" value={character.intelligence} />
+               <StatBox label="Мудрость" value={character.wisdom} />
+               <StatBox label="Харизма" value={character.charisma} />
             </div>
          </fieldset>
 
@@ -67,7 +72,7 @@ export function CharacterSheet({ character }: { character: Character }) {
                   {Object.entries(skills).map(([skill, bonus]) => (
                      <div key={skill} className="skill-row">
                         <span>{skill}</span>
-                        <span>+{bonus}</span>
+                        <span>{bonus}</span>
                      </div>
                   ))}
                </div>
@@ -77,20 +82,28 @@ export function CharacterSheet({ character }: { character: Character }) {
          <fieldset className="character-sheet-section">
             <legend>Кошелёк</legend>
             <div className="currency-display">
-               <span>сp {character.copper}</span>
-               <span>sp {character.silver}</span>
-               <span>gp {character.gold}</span>
-               <span>ep {character.electrum}</span>
-               <span>pp {character.platinum}</span>
+               <span>
+                  <i className="bi bi-record-circle-fill cp"></i>{" "}
+                  {character.copper}
+               </span>
+               <span>
+                  <i className="bi bi-record-circle-fill sp"></i>{" "}
+                  {character.silver}
+               </span>
+               <span>
+                  <i className="bi bi-record-circle-fill gp"></i>{" "}
+                  {character.gold}
+               </span>
+               <span>
+                  <i className="bi bi-record-circle-fill ep"></i>{" "}
+                  {character.electrum}
+               </span>
+               <span>
+                  <i className="bi bi-record-circle-fill pp"></i>{" "}
+                  {character.platinum}
+               </span>
             </div>
          </fieldset>
-
-         {character.backstory && (
-            <fieldset className="character-sheet-section">
-               <legend>Предыстория</legend>
-               <p className="backstory-text">{character.backstory}</p>
-            </fieldset>
-         )}
       </div>
    );
 }
@@ -109,6 +122,9 @@ function StatBox({ label, value }: { label: string; value: number }) {
       <div className="stat-box">
          <span className="stat-box-label">{label}</span>
          <span className="stat-box-value">{value}</span>
+         <span className="stat-box-value-mod">
+            {Math.floor((value - 10) / 2)}
+         </span>
       </div>
    );
 }
