@@ -59,7 +59,7 @@ export function CharacterSheet({ character }: { character: Character }) {
                <StatBox label="Сила" value={character.strength} />
                <StatBox label="Ловкость" value={character.dexterity} />
                <StatBox label="Телосложение" value={character.constitution} />
-               <StatBox label="Интелекти" value={character.intelligence} />
+               <StatBox label="Интелект" value={character.intelligence} />
                <StatBox label="Мудрость" value={character.wisdom} />
                <StatBox label="Харизма" value={character.charisma} />
             </div>
@@ -82,24 +82,24 @@ export function CharacterSheet({ character }: { character: Character }) {
          <fieldset className="character-sheet-section">
             <legend>Кошелёк</legend>
             <div className="currency-display">
-               <span>
-                  <i className="bi bi-record-circle-fill cp"></i>{" "}
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill cp coin"></i>
                   {character.copper}
                </span>
-               <span>
-                  <i className="bi bi-record-circle-fill sp"></i>{" "}
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill sp coin"></i>
                   {character.silver}
                </span>
-               <span>
-                  <i className="bi bi-record-circle-fill gp"></i>{" "}
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill gp coin"></i>
                   {character.gold}
                </span>
-               <span>
-                  <i className="bi bi-record-circle-fill ep"></i>{" "}
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill ep coin"></i>
                   {character.electrum}
                </span>
-               <span>
-                  <i className="bi bi-record-circle-fill pp"></i>{" "}
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill pp coin"></i>{" "}
                   {character.platinum}
                </span>
             </div>
@@ -118,13 +118,14 @@ function InfoCard({ label, value }: { label: string; value: number }) {
 }
 
 function StatBox({ label, value }: { label: string; value: number }) {
+   const mod = Math.floor((value - 10) / 2);
+   const modText = mod >= 0 ? `+${mod}` : `${mod}`;
+
    return (
       <div className="stat-box">
          <span className="stat-box-label">{label}</span>
+         <span className="stat-box-mod">{modText}</span>
          <span className="stat-box-value">{value}</span>
-         <span className="stat-box-value-mod">
-            {Math.floor((value - 10) / 2)}
-         </span>
       </div>
    );
 }
