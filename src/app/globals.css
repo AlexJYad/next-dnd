@@ -38,8 +38,10 @@
      SEMANTIC COLORS
   ====================== */
    --danger: #a52a2a;
+   --danger-light: rgba(255, 1, 1, 0.5);
    --nature: #0b623b;
    --mystic: #08514e;
+   --mystic-light: rgba(47, 151, 164, 0.5);
 
    /* =====================
      FRACTIONS / WORLDS

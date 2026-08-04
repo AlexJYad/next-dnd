@@ -7,8 +7,50 @@ import "./master-form.css";
 
 type Character = Database["public"]["Tables"]["characters"]["Row"];
 
+interface InventoryItem {
+   name: string;
+   quantity: number;
+}
+
+interface SkillEntry {
+   name: string;
+   value: string;
+}
+
+function parseInventory(raw: unknown): InventoryItem[] {
+   if (!Array.isArray(raw)) return [];
+   return raw
+      .filter(
+         (item): item is Record<string, unknown> =>
+            typeof item === "object" && item !== null,
+      )
+      .map((item) => ({
+         name: typeof item.name === "string" ? item.name : "",
+         quantity: typeof item.quantity === "number" ? item.quantity : 0,
+      }));
+}
+
+function parseSkills(raw: unknown): SkillEntry[] {
+   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+      return [];
+   }
+   return Object.entries(raw as Record<string, unknown>).map(
+      ([name, value]) => ({
+         name,
+         value: typeof value === "string" ? value : String(value ?? ""),
+      }),
+   );
+}
+
 export function MasterCharacterForm({ character }: { character: Character }) {
    const [error, setError] = useState<string | null>(null);
+   const [inventory, setInventory] = useState<InventoryItem[]>(() =>
+      parseInventory(character.inventory),
+   );
+   const [skills, setSkills] = useState<SkillEntry[]>(() =>
+      parseSkills(character.skills),
+   );
+
    const updateWithId = updateCharacterAsMaster.bind(null, character.id);
 
    async function handleSubmit(formData: FormData) {
@@ -20,29 +62,46 @@ export function MasterCharacterForm({ character }: { character: Character }) {
       }
    }
 
+   function updateInventoryItem(index: number, patch: Partial<InventoryItem>) {
+      setInventory((prev) =>
+         prev.map((item, i) => (i === index ? { ...item, ...patch } : item)),
+      );
+   }
+
+   function removeInventoryItem(index: number) {
+      setInventory((prev) => prev.filter((_, i) => i !== index));
+   }
+
+   function addInventoryItem() {
+      setInventory((prev) => [...prev, { name: "", quantity: 1 }]);
+   }
+
+   function updateSkill(index: number, patch: Partial<SkillEntry>) {
+      setSkills((prev) =>
+         prev.map((skill, i) => (i === index ? { ...skill, ...patch } : skill)),
+      );
+   }
+
+   function removeSkill(index: number) {
+      setSkills((prev) => prev.filter((_, i) => i !== index));
+   }
+
+   function addSkill() {
+      setSkills((prev) => [...prev, { name: "", value: "" }]);
+   }
+
+   const inventoryJson = JSON.stringify(inventory);
+   const skillsJson = JSON.stringify(
+      Object.fromEntries(skills.map((s) => [s.name, s.value])),
+   );
+
    return (
       <form action={handleSubmit} className="master-form">
          {error && <p className="error-message">{error}</p>}
 
-         <label>
+         <label style={{ display: "none" }}>
             Имя
             <input name="name" defaultValue={character.name ?? ""} required />
-         </label>
-
-         <label>
-            Аватар (URL)
-            <input
-               name="avatar_url"
-               defaultValue={character.avatar_url ?? ""}
-            />
-         </label>
-
-         <label>
-            Предыстория
-            <textarea
-               name="backstory"
-               defaultValue={character.backstory ?? ""}
-            />
          </label>
 
          <label>
@@ -170,21 +229,89 @@ export function MasterCharacterForm({ character }: { character: Character }) {
             ))}
          </fieldset>
 
-         <label>
-            Инвентарь (JSON)
-            <textarea
-               name="inventory"
-               defaultValue={JSON.stringify(character.inventory, null, 2)}
-            />
-         </label>
+         <fieldset>
+            <legend>Инвентарь</legend>
+            <div className="editable-list">
+               {inventory.map((item, index) => (
+                  <div className="editable-row" key={index}>
+                     <input
+                        type="text"
+                        placeholder="Название предмета"
+                        value={item.name}
+                        onChange={(e) =>
+                           updateInventoryItem(index, { name: e.target.value })
+                        }
+                     />
+                     <input
+                        type="number"
+                        min={0}
+                        className="quantity-input"
+                        value={item.quantity}
+                        onChange={(e) =>
+                           updateInventoryItem(index, {
+                              quantity: Number(e.target.value),
+                           })
+                        }
+                     />
+                     <button
+                        type="button"
+                        className="remove-row-button"
+                        onClick={() => removeInventoryItem(index)}
+                        aria-label="Удалить предмет"
+                     >
+                        ×
+                     </button>
+                  </div>
+               ))}
+            </div>
+            <button
+               type="button"
+               className="add-row-button"
+               onClick={addInventoryItem}
+            >
+               + Добавить предмет
+            </button>
+            <input type="hidden" name="inventory" value={inventoryJson} />
+         </fieldset>
 
-         <label>
-            Навыки (JSON)
-            <textarea
-               name="skills"
-               defaultValue={JSON.stringify(character.skills, null, 2)}
-            />
-         </label>
+         <fieldset>
+            <legend>Навыки</legend>
+            <div className="editable-list">
+               {skills.map((skill, index) => (
+                  <div className="editable-row" key={index}>
+                     <input
+                        type="text"
+                        placeholder="Название навыка"
+                        value={skill.name}
+                        onChange={(e) =>
+                           updateSkill(index, { name: e.target.value })
+                        }
+                     />
+                     <input
+                        type="text"
+                        placeholder="Значение"
+                        className="skill-value-input"
+                        value={skill.value}
+                        onChange={(e) =>
+                           updateSkill(index, { value: e.target.value })
+                        }
+                     />
+                     <button
+                        type="button"
+                        className="remove-row-button"
+                        onClick={() => removeSkill(index)}
+                        aria-label="Удалить навык"
+                     >
+                        ×
+                     </button>
+                  </div>
+               ))}
+            </div>
+            <button type="button" className="add-row-button" onClick={addSkill}>
+               + Добавить навык
+            </button>
+            <input type="hidden" name="skills" value={skillsJson} />
+         </fieldset>
 
          <button type="submit">Сохранить</button>
       </form>

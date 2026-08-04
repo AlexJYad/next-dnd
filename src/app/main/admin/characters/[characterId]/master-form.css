@@ -123,3 +123,51 @@
 .master-form button[type="submit"]:active {
    transform: translateY(1px);
 }
+
+.master-form .editable-list {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   margin-bottom: 8px;
+}
+
+.master-form .editable-row {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.master-form .editable-row input[type="text"] {
+   flex: 1;
+}
+
+.master-form .editable-row .quantity-input {
+   width: 70px;
+   flex: none;
+}
+
+.master-form .editable-row .skill-value-input {
+   width: 90px;
+   flex: none;
+}
+
+.master-form .remove-row-button {
+   flex: none;
+   width: 28px;
+   height: 28px;
+   line-height: 1;
+   border: none;
+   border-radius: 6px;
+   background: var(--bg-1, #eee);
+   cursor: pointer;
+}
+
+.master-form .add-row-button {
+   align-self: flex-start;
+   background: none;
+   border: 1px dashed var(--border-color, #999);
+   border-radius: 6px;
+   padding: 4px 10px;
+   cursor: pointer;
+   font-size: 13px;
+}

@@ -1,7 +1,5 @@
 import type { Database } from "@/lib/database.types";
-import { StatBar } from "@/components/StatBar/StatBar";
 import "./character-sheet.css";
-import { ImageWithFallback } from "@/components/ImageWithFallback/ImageWithFallback";
 
 type Character = Database["public"]["Tables"]["characters"]["Row"];
 
@@ -126,6 +124,38 @@ function StatBox({ label, value }: { label: string; value: number }) {
          <span className="stat-box-label">{label}</span>
          <span className="stat-box-mod">{modText}</span>
          <span className="stat-box-value">{value}</span>
+      </div>
+   );
+}
+
+export function StatBar({
+   label,
+   current,
+   max,
+   variant,
+}: {
+   label: string;
+   current: number;
+   max: number;
+   variant: "hp" | "mana";
+}) {
+   const percent = max > 0 ? Math.min(100, (current / max) * 100) : 0;
+   return (
+      <div className="stat-bar">
+         <div className="stat-bar-label">
+            <span>{label}</span>
+            {variant === "hp" && (
+               <span>
+                  {current} / {max}
+               </span>
+            )}
+         </div>
+         <div className="stat-bar-track">
+            <div
+               className={`stat-bar-fill stat-bar-fill--${variant}`}
+               style={{ width: `${percent}%` }}
+            />
+         </div>
       </div>
    );
 }

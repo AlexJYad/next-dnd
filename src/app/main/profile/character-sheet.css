@@ -1,6 +1,6 @@
 .character-sheet {
    max-width: 640px;
-   min-width: 300px;
+   min-width: 350px;
    margin: 0 auto;
    padding: 24px;
    display: flex;
@@ -46,7 +46,6 @@
    justify-content: space-between;
    font-size: 13px;
    font-weight: 600;
-   color: #374151;
 }
 
 .stat-bar-track {
@@ -63,11 +62,11 @@
 }
 
 .stat-bar-fill--hp {
-   background: linear-gradient(90deg, #dc2626, #ef4444);
+   background: linear-gradient(90deg, var(--danger), var(--danger-light));
 }
 
 .stat-bar-fill--mana {
-   background: linear-gradient(90deg, #2563eb, #3b82f6);
+   background: linear-gradient(90deg, var(--mystic), rgba(0, 225, 255, 0.5));
 }
 
 .character-sheet-grid {
