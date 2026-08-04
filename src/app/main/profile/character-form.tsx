@@ -82,40 +82,50 @@ export function CharacterForm({ character }: CharacterFormProps) {
 
          <fieldset>
             <legend>Инвентарь</legend>
-            {inventory.map((item, index) => (
-               <div key={index} className="inventory-item">
-                  <input
-                     type="text"
-                     placeholder="Название"
-                     value={item.name}
-                     onChange={(e) => updateItem(index, "name", e.target.value)}
-                  />
-                  <input
-                     type="number"
-                     min={0}
-                     value={item.quantity}
-                     onChange={(e) =>
-                        updateItem(index, "quantity", Number(e.target.value))
-                     }
-                  />
-                  <button type="button" onClick={() => removeItem(index)}>
-                     ×
-                  </button>
-               </div>
-            ))}
-            <button type="button" className="add-item-btn" onClick={addItem}>
-               + Добавить предмет
-            </button>
+            <div className="inventory">
+               {inventory.map((item, index) => (
+                  <div key={index} className="inventory-item">
+                     <input
+                        type="text"
+                        placeholder="Название"
+                        value={item.name}
+                        onChange={(e) =>
+                           updateItem(index, "name", e.target.value)
+                        }
+                     />
+                     <input
+                        type="number"
+                        min={0}
+                        value={item.quantity}
+                        onChange={(e) =>
+                           updateItem(index, "quantity", Number(e.target.value))
+                        }
+                     />
+                     <button type="button" onClick={() => removeItem(index)}>
+                        ×
+                     </button>
+                  </div>
+               ))}
+               <button type="button" className="add-item-btn" onClick={addItem}>
+                  + Добавить предмет
+               </button>
+            </div>
          </fieldset>
 
-         <fieldset>
+         <fieldset className="character-sheet-section">
             <legend>Потратить валюту</legend>
-            <div className="currency-grid">
+            <div className="currency-display currency-input-grid">
                {(
-                  ["gold", "silver", "copper", "platinum", "electrum"] as const
-               ).map((field) => (
-                  <label key={field}>
-                     {field} (есть: {character[field]})
+                  [
+                     { field: "copper", cls: "cp" },
+                     { field: "silver", cls: "sp" },
+                     { field: "gold", cls: "gp" },
+                     { field: "electrum", cls: "ep" },
+                     { field: "platinum", cls: "pp" },
+                  ] as const
+               ).map(({ field, cls }) => (
+                  <label key={field} className="coin-box">
+                     <i className={`bi bi-record-circle-fill ${cls} coin`}></i>
                      <input
                         type="number"
                         name={`spend_${field}`}

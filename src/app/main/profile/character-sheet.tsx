@@ -1,5 +1,4 @@
 import type { Database } from "@/lib/database.types";
-import { StatBar } from "@/components/StatBar/StatBar";
 import "./character-sheet.css";
 
 type Character = Database["public"]["Tables"]["characters"]["Row"];
@@ -20,7 +19,6 @@ export function CharacterSheet({ character }: { character: Character }) {
             <div>
                <h1>{character.name}</h1>
                <p className="character-meta">
-                  Уровень {character.level} ·{" "}
                   {character.age ?
                      `${character.age} лет`
                   :  "Возраст неизвестен"}
@@ -44,19 +42,24 @@ export function CharacterSheet({ character }: { character: Character }) {
          </div>
 
          <div className="character-sheet-grid">
+            <InfoCard label="Уровень" value={character.level ?? 0} />
             <InfoCard label="Класс брони" value={character.armor_class} />
             <InfoCard label="Опыт" value={character.experience} />
+            <InfoCard
+               label="Бонус мастерства"
+               value={2 + Math.floor((character.level ?? 0 - 1) / 4)}
+            />
          </div>
 
          <fieldset className="character-sheet-section">
             <legend>Характеристики</legend>
             <div className="stats-grid">
-               <StatBox label="СИЛ" value={character.strength} />
-               <StatBox label="ЛОВ" value={character.dexterity} />
-               <StatBox label="ТЕЛ" value={character.constitution} />
-               <StatBox label="ИНТ" value={character.intelligence} />
-               <StatBox label="МУД" value={character.wisdom} />
-               <StatBox label="ХАР" value={character.charisma} />
+               <StatBox label="Сила" value={character.strength} />
+               <StatBox label="Ловкость" value={character.dexterity} />
+               <StatBox label="Телосложение" value={character.constitution} />
+               <StatBox label="Интелект" value={character.intelligence} />
+               <StatBox label="Мудрость" value={character.wisdom} />
+               <StatBox label="Харизма" value={character.charisma} />
             </div>
          </fieldset>
 
@@ -67,7 +70,7 @@ export function CharacterSheet({ character }: { character: Character }) {
                   {Object.entries(skills).map(([skill, bonus]) => (
                      <div key={skill} className="skill-row">
                         <span>{skill}</span>
-                        <span>+{bonus}</span>
+                        <span>{bonus}</span>
                      </div>
                   ))}
                </div>
@@ -77,20 +80,28 @@ export function CharacterSheet({ character }: { character: Character }) {
          <fieldset className="character-sheet-section">
             <legend>Кошелёк</legend>
             <div className="currency-display">
-               <span>сp {character.copper}</span>
-               <span>sp {character.silver}</span>
-               <span>gp {character.gold}</span>
-               <span>ep {character.electrum}</span>
-               <span>pp {character.platinum}</span>
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill cp coin"></i>
+                  {character.copper}
+               </span>
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill sp coin"></i>
+                  {character.silver}
+               </span>
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill gp coin"></i>
+                  {character.gold}
+               </span>
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill ep coin"></i>
+                  {character.electrum}
+               </span>
+               <span className="coin-box">
+                  <i className="bi bi-record-circle-fill pp coin"></i>{" "}
+                  {character.platinum}
+               </span>
             </div>
          </fieldset>
-
-         {character.backstory && (
-            <fieldset className="character-sheet-section">
-               <legend>Предыстория</legend>
-               <p className="backstory-text">{character.backstory}</p>
-            </fieldset>
-         )}
       </div>
    );
 }
@@ -105,10 +116,46 @@ function InfoCard({ label, value }: { label: string; value: number }) {
 }
 
 function StatBox({ label, value }: { label: string; value: number }) {
+   const mod = Math.floor((value - 10) / 2);
+   const modText = mod >= 0 ? `+${mod}` : `${mod}`;
+
    return (
       <div className="stat-box">
          <span className="stat-box-label">{label}</span>
+         <span className="stat-box-mod">{modText}</span>
          <span className="stat-box-value">{value}</span>
+      </div>
+   );
+}
+
+export function StatBar({
+   label,
+   current,
+   max,
+   variant,
+}: {
+   label: string;
+   current: number;
+   max: number;
+   variant: "hp" | "mana";
+}) {
+   const percent = max > 0 ? Math.min(100, (current / max) * 100) : 0;
+   return (
+      <div className="stat-bar">
+         <div className="stat-bar-label">
+            <span>{label}</span>
+            {variant === "hp" && (
+               <span>
+                  {current} / {max}
+               </span>
+            )}
+         </div>
+         <div className="stat-bar-track">
+            <div
+               className={`stat-bar-fill stat-bar-fill--${variant}`}
+               style={{ width: `${percent}%` }}
+            />
+         </div>
       </div>
    );
 }

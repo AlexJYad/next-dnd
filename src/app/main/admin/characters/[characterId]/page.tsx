@@ -2,6 +2,7 @@ import { redirect, notFound } from "next/navigation";
 import { getSession } from "@/lib/getSession";
 import { getCharacterById } from "@/lib/data/character";
 import { MasterCharacterForm } from "./master-character-form";
+import { CharacterSheet } from "@/app/main/profile/character-sheet";
 
 export default async function AdminCharacterPage({
    params,
@@ -29,5 +30,10 @@ export default async function AdminCharacterPage({
       notFound();
    }
 
-   return <MasterCharacterForm character={character} />;
+   return (
+      <div className="flex">
+         <CharacterSheet character={character} />
+         <MasterCharacterForm character={character} />;
+      </div>
+   );
 }
